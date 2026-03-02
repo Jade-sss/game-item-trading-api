@@ -1,0 +1,12 @@
+__pycache__
+*.pyc
+*.pyo
+.git
+.gitignore
+.env
+.venv
+venv
+*.md
+trading.db
+.DS_Store
+*.sqlite3

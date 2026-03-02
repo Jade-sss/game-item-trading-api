@@ -1,0 +1,25 @@
+# DigitalOcean App Platform spec
+# Deploy via: doctl apps create --spec .do/app.yaml
+# Or paste this into the App Platform UI under "App Spec"
+
+spec:
+  name: game-item-trading
+  region: nyc
+
+  services:
+    - name: api
+      source_dir: /
+      dockerfile_path: Dockerfile
+      http_port: 8080
+      instance_count: 1
+      instance_size_slug: basic-xxs  # $5/mo — 1 vCPU, 512 MB RAM
+      routes:
+        - path: /
+      envs:
+        - key: SECRET_KEY
+          scope: RUN_TIME
+          type: SECRET
+          value: "${SECRET_KEY}"
+        - key: DATABASE_URL
+          scope: RUN_TIME
+          value: "sqlite:///./trading.db"
